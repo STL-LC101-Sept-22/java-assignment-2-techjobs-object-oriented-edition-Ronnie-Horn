@@ -1,5 +1,7 @@
 package org.launchcode.techjobs.oo;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Objects;
 
 public class Job {
@@ -14,36 +16,52 @@ public class Job {
 
 
     public Job() {
-    id = nextId;
-    nextId++;
+        id = nextId;
+        nextId++;
 
 
     }
 
-        public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
         this.name = name;
         this.employer = employer;
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
-        }
+    }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Job job = (Job) o;
-            return id == job.id;
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
+        return id == job.id;
+    }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(id);
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "\n" +
+                "ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Employer: " + employer.getValue() + "\n" +
+                "Location: " + location.getValue() + "\n" +
+                "Position Type: " + positionType.getValue() + "\n" +
+                "Core Competency: " + coreCompetency.getValue() + "\n";
+    }
+
 
     public String getName() {
+        if (name == null || name.isEmpty()) {
+            System.out.println("Data not available");
+        }
         return name;
+
     }
 
     public void setName(String name) {
@@ -51,11 +69,12 @@ public class Job {
     }
 
     public Employer getEmployer() {
-        return employer;
+
+            return employer;
     }
 
     public void setEmployer(Employer employer) {
-        this.employer = employer;
+                   this.employer = employer;
     }
 
     public Location getLocation() {
@@ -84,6 +103,7 @@ public class Job {
 
     public int getId() {
         return id;
+
     }
 }
 
