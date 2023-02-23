@@ -88,18 +88,20 @@ public class JobTest {
         Job testJob4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         String jobString = testJob4.toString();
-
-
-        assertEquals("ID: " + testJob4.getId(), "ID: " + testJob4.getId());
-        assertEquals("Name: Product tester", "Name: " + testJob4.getName().toString());
-        assertEquals("Employer: ACME", "Employer: " + testJob4.getEmployer().getValue().toString());
-        assertEquals("Location: Desert", "Location: " + testJob4.getLocation().getValue().toString());
-        assertEquals("Position Type: Quality control", "Position Type: " + testJob4.getPositionType().getValue().toString());
-        assertEquals("Core Competency: Persistence", "Core Competency: " + testJob4.getCoreCompetency().getValue().toString());
-
-
-        //        System.out.println(testJob4.getEmployer().getValue().toString());
-//        System.out.println("Employer: " + testJob4.getEmployer().getValue());
+        String output = String.format( "\nID: %d\n" +
+                "Name: %s\n" +
+                "Employer: ACME\n" +
+                "Location: Desert\n" +
+                "Position Type: Quality control\n" +
+                "Core Competency: Persistence\n",testJob4.getId(),testJob4.getName());
+        assertEquals(output,jobString);
+//        System.out.println(jobString);
+        assertTrue(testJob4.toString().contains("Name: Product tester"));
+        assertTrue(testJob4.toString().contains("Employer: ACME"));
+        assertTrue(testJob4.toString().contains("Name: Product tester"));
+        assertTrue(testJob4.toString().contains("Location: Desert"));
+        assertTrue(testJob4.toString().contains("Position Type: Quality control"));
+        assertTrue(testJob4.toString().contains("Core Competency: Persistence"));
     }
 
     @Test
@@ -107,19 +109,20 @@ public class JobTest {
 
         Job testJob5 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
         String job5String = testJob5.toString();
-//            assertEquals(job5String, testJob5.toString());
+        String output = String.format( "\nID: %d\n" +
+                "Name: Data not available\n" +
+                "Employer: Data not available\n" +
+                "Location: Data not available\n" +
+                "Position Type: Data not available\n" +
+                "Core Competency: Data not available\n", testJob5.getId());
+        assertEquals(output,job5String );
+            assertEquals(job5String, testJob5.toString());
         assertEquals("Data not available", testJob5.getEmployer().getValue());
-//        System.out.println(testJob5.getEmployer().getValue());
-//        System.out.println(testJob5.getCoreCompetency().getValue());
-//        System.out.println(testJob5.getLocation().getValue());
-//        System.out.println(testJob5.getPositionType().getValue());
-//        System.out.println(testJob5.getName());
+        assertTrue(job5String.contains("Data not available"));
 
-//        Job testJob5 = new Job("", new Employer(" "), new Location(" "), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-//        String job5String = testJob5.toString();
-//
-//        assertEquals("Data not available", testJob5.getEmployer().getValue());
-//        System.out.println(testJob5.getEmployer().getValue());
+        System.out.println(testJob5.getName());
+
+
 
     }
 

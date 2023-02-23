@@ -46,6 +46,9 @@ public class Job {
 
     @Override
     public String toString() {
+        if (name == null || name.isEmpty()) {
+            name = "Data not available";
+        }
         return "\n" +
                 "ID: " + id + "\n" +
                 "Name: " + name + "\n" +
@@ -58,7 +61,7 @@ public class Job {
 
     public String getName() {
         if (name == null || name.isEmpty()) {
-            System.out.println("Data not available");
+            return "Data not available";
         }
         return name;
 
